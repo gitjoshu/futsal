@@ -66,14 +66,14 @@ class PlayerDialog extends Component {
 	render() {
 		return (
 			<Dialog open={this.state.open} onClose={this.close} aria-labelledby="form-dialog-title">
-				<DialogTitleClose id="form-dialog-title" onClick={this.close}>Edit player</DialogTitleClose>
+				<DialogTitleClose id="form-dialog-title" onClick={this.close}>Editar jugador</DialogTitleClose>
 				<DialogContent dividers>
-					<TextField inputRef={this._refNumber} margin="dense" id="playerNumber" defaultValue={this.state.player.no} label="Number" type="text" fullWidth autoFocus />
-					<TextField inputRef={this._refName} margin="dense" id="playerName" defaultValue={this.state.player.name} label="Name" type="text" fullWidth />
+					<TextField inputRef={this._refNumber} margin="dense" id="playerNumber" defaultValue={this.state.player.no} label="Número" type="text" fullWidth autoFocus />
+					<TextField inputRef={this._refName} margin="dense" id="playerName" defaultValue={this.state.player.name} label="Nombre" type="text" fullWidth />
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={this.remove} variant="contained" color="secondary">Remove</Button>
-					<Button onClick={this.save} variant="contained" color="primary">Save</Button>
+					<Button onClick={this.remove} variant="contained" color="secondary">Eliminar</Button>
+					<Button onClick={this.save} variant="contained" color="primary">Guardar</Button>
 				</DialogActions>
 			</Dialog>
 		);

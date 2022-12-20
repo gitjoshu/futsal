@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import ArrowForward from '@mui/icons-material/ArrowForward';
-import Movie from '@mui/icons-material/Movie';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import Add from '@mui/icons-material/Add';
 import Delete from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip';
@@ -101,7 +101,7 @@ class AnimControls extends Component {
 				<Tooltip title="Reproducir animación">
 					<span>
 						<IconButton aria-label="Reproducir animación" color="inherit" onClick={this.props.animPlayerShow} disabled={this.playDisabled()}>
-							<Movie />
+							<PlayCircleOutlineIcon fontSize='large'/>
 						</IconButton>
 					</span>
 				</Tooltip>
