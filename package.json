@@ -2,7 +2,7 @@
   "name": "tactics-board",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gljubojevic.github.io/tactics-board",
+  "homepage": "https://gitjoshu.github.io/futsal",
   "browser": {
     "child_process": false
   },
