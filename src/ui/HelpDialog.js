@@ -30,7 +30,7 @@ import DotsHorizontal from 'mdi-material-ui/DotsHorizontal';
 import TextFields from '@mui/icons-material/TextFields';
 import SportsSoccer from '@mui/icons-material/SportsSoccer';
 // Animation tool
-import Movie from '@mui/icons-material/Movie';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import Add from '@mui/icons-material/Add';
 
 
@@ -164,7 +164,7 @@ class HelpDialog extends Component {
 						<li>Navegación de fotogramas clave <ArrowLeft/> fotograma clave actualmente visiblee <ArrowRight/></li>
 						<li>Fotograma clave <Add/> agregar y <Delete/> eliminar iconos</li>
 						<li>Fotograma clave selección de duración en segundos, es decir para cada cuadro clave en animación</li>
-						<li><Movie /> Botón de inicio de reproducción que abre el control de reproducción</li>
+						<li><PlayCircleOutlineIcon /> Botón de inicio de reproducción que abre el control de reproducción</li>
 					</ul>
 					<p>La herramienta de reproducción de animación es simple y se explica por sí misma.</p>
 				</DialogContent>
