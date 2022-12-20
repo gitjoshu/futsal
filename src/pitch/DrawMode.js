@@ -125,7 +125,7 @@ class DrawMode {
 	}
 
 	get textSizeOptions() {
-		return ["Extra small","Small","Normal","Large","Extra large"];
+		return ["Extra pequeño","Pequeño","Normal","Grande","Extra grande"];
 	}
 
 	get textSize() {
@@ -133,7 +133,7 @@ class DrawMode {
 	}
 
 	get textSizeName() {
-		return "Size: " + this.textSizeOptions[this._textSize];
+		return "Tamaño: " + this.textSizeOptions[this._textSize];
 	}
 
 	set textSize(value) {

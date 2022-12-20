@@ -227,14 +227,14 @@ class DrawMenu extends Component {
 				<Menu id="drawingMenu" anchorEl={this.state.anchorEl} keepMounted open={this.state.open} onClose={this.close}>
 					<MenuItem data-value="select" onClick={this.close}>
 						<ListItemIcon><CursorDefault /></ListItemIcon>
-						<ListItemText primary="Select / Move" />
+						<ListItemText primary="Seleccionar / Mover" />
 					</MenuItem>
 					<Divider />
 					<MenuItem data-value="delete" onClick={this.close}>
 						<ListItemIcon><DeleteIcon /></ListItemIcon>
-						<ListItemText primary="Remove" />
+						<ListItemText primary="Eliminar" />
 					</MenuItem>
-					<Divider />
+					{/* <Divider />
 					<MenuItem onClick={this.pitchOverlaysToggle}>
 						<ListItemText primary="Pitch overlay" secondary={dm.pitchOverlay} />
 						{this.state.pitchOverlays ? <ExpandLess /> : <ExpandMore />}
@@ -243,39 +243,39 @@ class DrawMenu extends Component {
 						<RadioGroup name="radio-pitch-overlays" value={dm.pitchOverlay} onChange={this.pitchOverlayOnChange}>
 							{this.pitchOverlaysRender()}
 						</RadioGroup>
-					</Collapse>
+					</Collapse> */}
 					<Divider />
 					<MenuItem onClick={this.colorSelect}>
 						<ListItemIcon><Palette style={{ color: dm.colorSelected }} /></ListItemIcon>
-						<ListItemText primary="Drawing color" secondary={dm.colorSelectedName} />
+						<ListItemText primary="Color del dibujo" secondary={dm.colorSelectedName} />
 					</MenuItem>
-					<Divider />
+					{/* <Divider />
 					<MenuItem data-value="select" onClick={this.extrasSelect}>
 						<ListItemIcon><SportsSoccer /></ListItemIcon>
 						<ListItemText primary="Extras" />
-					</MenuItem>
+					</MenuItem> */}
 					<Divider />
 					<MenuItem data-value="line" onClick={this.close}>
 						<ListItemIcon><VectorLine /></ListItemIcon>
-						<ListItemText primary="Draw line" />
+						<ListItemText primary="Dibujar linea" />
 					</MenuItem>
 					<MenuItem onClick={this.lineArrowsToggle}>
 						<ListItemIcon>{this.lineArrowsIcon()}</ListItemIcon>
-						<ListItemText primary="Line arrows" />
+						<ListItemText primary="Flechas de línea" />
 						{this.state.lineArrows ? <ExpandLess /> : <ExpandMore />}
 					</MenuItem>
 					<Collapse in={this.state.lineArrows} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							<MenuItem onClick={this.lineArrowEndToggle}>
 								<ListItemIcon><ArrowRight /></ListItemIcon>
-								<ListItemText primary="End" />
+								<ListItemText primary="Final" />
 								<ListItemSecondaryAction>
 									<Switch edge="end" onChange={this.lineArrowEndToggle} checked={dm.lineArrowEnd} />
 								</ListItemSecondaryAction>
 							</MenuItem>
 							<MenuItem onClick={this.lineArrowStartToggle}>
 								<ListItemIcon><ArrowLeft /></ListItemIcon>
-								<ListItemText primary="Start" />
+								<ListItemText primary="Principio" />
 								<ListItemSecondaryAction>
 									<Switch edge="end" onChange={this.lineArrowStartToggle} checked={dm.lineArrowStart} />
 								</ListItemSecondaryAction>
@@ -284,38 +284,38 @@ class DrawMenu extends Component {
 					</Collapse>
 					<MenuItem onClick={this.linePatternToggle}>
 						<ListItemIcon>{this.linePatternIcon()}</ListItemIcon>
-						<ListItemText primary="Line pattern" />
+						<ListItemText primary="Patrón de línea" />
 						{this.state.linePattern ? <ExpandLess /> : <ExpandMore />}
 					</MenuItem>
 					<Collapse in={this.state.linePattern} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							<MenuItem onClick={this.lineDashedOff}>
 								<ListItemIcon><Minus /></ListItemIcon>
-								<ListItemText primary="Solid" />
+								<ListItemText primary="Sólido" />
 							</MenuItem>
 							<MenuItem onClick={this.lineDashedOn}>
 								<ListItemIcon><DotsHorizontal /></ListItemIcon>
-								<ListItemText primary="Dashed" />
+								<ListItemText primary="Discontínuo" />
 							</MenuItem>
 						</List>
 					</Collapse>
 					<Divider />
 					<MenuItem data-value="square" onClick={this.close}>
 						<ListItemIcon><ShapeSquarePlus /></ListItemIcon>
-						<ListItemText primary="Draw square" />
+						<ListItemText primary="Dibujar cuadrado" />
 					</MenuItem>
 					<Divider />
 					<MenuItem data-value="ellipse" onClick={this.close}>
 						<ListItemIcon><ShapeOvalPlus /></ListItemIcon>
-						<ListItemText primary="Draw ellipse" />
+						<ListItemText primary="Dibujar elipse" />
 					</MenuItem>
 					<Divider />
 					<MenuItem data-value="text" onClick={this.close}>
 						<ListItemIcon><TextFields /></ListItemIcon>
-						<ListItemText primary="Write text" secondary={dm.textSizeName} />
+						<ListItemText primary="Escribir texto" secondary={dm.textSizeName} />
 					</MenuItem>
 					<MenuItem onClick={this.textSizesToggle}>
-						<ListItemText primary="Text sizes" />
+						<ListItemText primary="Tamaño de texto" />
 						{this.state.textSizes ? <ExpandLess /> : <ExpandMore />}
 					</MenuItem>
 					<Collapse in={this.state.textSizes} timeout="auto" unmountOnExit>

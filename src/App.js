@@ -479,41 +479,41 @@ class App extends Component {
 
   AnimKeyFrameAdd() {
     if (this.pitch.animKeyFrameAdd()) {
-      this.SnackbarOpen("success", "New key frame added to animation");
+      this.SnackbarOpen("success", "Nuevo fotograma agregado a la animación.");
     } else {
       this.SnackbarOpen(
         "error",
-        "Can't add new key frame no change is done to current key frame"
+        "No se puede agregar un nuevo fotograma, no se realiza ningún cambio en el cuadro clave actual."
       );
     }
   }
 
   AnimKeyFrameDelete() {
     if (this.pitch.animKeyFrameDelete()) {
-      this.SnackbarOpen("success", "Key frame deleted from animation");
+      this.SnackbarOpen("success", "Fotograma eliminado de la animación.");
     } else {
       this.SnackbarOpen(
         "error",
-        "Can't delete key frame, only last can be deleted."
+        "No se puede eliminar el fotograma, solo se puede eliminar el último."
       );
     }
   }
 
   AnimKeyFrameNext() {
     if (!this.pitch.animKeyFrameNext()) {
-      this.SnackbarOpen("warning", "No more key frames to navigate");
+      this.SnackbarOpen("warning", "No más fotogramas clave para navegar");
     }
   }
 
   AnimKeyFramePrevious() {
     if (!this.pitch.animKeyFramePrevious()) {
-      this.SnackbarOpen("warning", "You are on first key frame");
+      this.SnackbarOpen("warning", "Estás en el primer fotograma");
     }
   }
 
   AnimKeyFrameDurationSet(duration) {
     if (!this.pitch.animKeyFrameDurationSet(duration)) {
-      this.SnackbarOpen("info", `You set the frame duration to ${duration}s`);
+      this.SnackbarOpen("info", `Establece la duración del fotograma en ${duration}s`);
     }
   }
 
@@ -539,7 +539,7 @@ class App extends Component {
 
   animPlayerShow() {
     if (this.state.pitch.AnimKeyFrames.length < 2) {
-      this.SnackbarOpen("warning", "No animation is created");
+      this.SnackbarOpen("warning", "No se ha creado ninguna animación.");
       return;
     }
     this.refAnimPlayer.current.show();
