@@ -88,7 +88,7 @@ class AnimControls extends Component {
 						<Select
 							id="frameDurationSelect"
 							onChange={this.handleChange}
-							defaultValue={5}>
+							defaultValue={3}>
 							<MenuItem value={1}>1</MenuItem>
 							<MenuItem value={3}>3</MenuItem>
 							<MenuItem value={5}>5</MenuItem>

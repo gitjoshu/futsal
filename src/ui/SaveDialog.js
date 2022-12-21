@@ -102,7 +102,7 @@ class SaveDialog extends Component {
 						ref={this.refName}
 						id="name-required"
 						label="Nombre"
-						placeholder="Por favor ingrese un nombre"
+						placeholder="Por favor establezca un nombre"
 						value={this.state.name}
 						onChange={this.nameChange}
 						onBlur={this.nameBlur}

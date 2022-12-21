@@ -321,7 +321,7 @@ class BrowseDialog extends Component {
 					transformOrigin={{ horizontal: 'right', vertical: 'top' }}
 					anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}>
 					<MenuItem data-value="delete" onClick={this.menuClose}>
-						<ListItemIcon><DeleteIcon fontSize="small" /></ListItemIcon>Delete
+						<ListItemIcon><DeleteIcon fontSize="small" /></ListItemIcon>Eliminar
 					</MenuItem>
 				</Menu>
 			</Dialog>

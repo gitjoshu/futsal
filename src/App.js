@@ -50,6 +50,7 @@ class App extends Component {
     // event handlers
     this.ToggleDrawer = this.ToggleDrawer.bind(this);
     this.SaveImage = this.SaveImage.bind(this);
+    this.SaveVideo = this.SaveVideo.bind(this);
     this.NewScheme = this.NewScheme.bind(this);
     this.NewAnimation = this.NewAnimation.bind(this);
     this.AnimCreate = this.AnimCreate.bind(this);
@@ -90,6 +91,7 @@ class App extends Component {
     this.signOut = this.signOut.bind(this);
     this.signedInCallback = this.signedInCallback.bind(this);
     this.goSiteHome = this.goSiteHome.bind(this);
+    this.DownloadVideo = this.DownloadVideo.bind(this);
 
     if (this.config.useFirebase) {
       this.server = new FirebaseServer(
@@ -222,6 +224,30 @@ class App extends Component {
       this.AnimDelete
     );
   }
+  DownloadVideo() {
+    const img = document.querySelector("#img-download");
+    const svg = this.refPitchEdit.current.getSVG();
+    const encodedString = "data:image/svg+xml;base64," + btoa(svg.svgText);
+    img.src = encodedString;
+    img.addEventListener("load", () => {
+      const canvas = document.querySelector("#canvas-video");
+      canvas.width = svg.width / 2;
+      canvas.height = svg.height / 2;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(
+        img, //e.target,
+        0,
+        0,
+        svg.width,
+        svg.height,
+        0,
+        0,
+        svg.width,
+        svg.height
+      );
+    });
+    // return this.refPitchEdit.current.getSVG();
+  }
 
   SaveImage() {
     console.log("App save image");
@@ -233,6 +259,67 @@ class App extends Component {
       svg.width / 2,
       svg.height / 2
     );
+  }
+  SaveVideo() {
+    console.log("App save video");
+    const canvas = document.querySelector("#canvas-video");
+    const video = document.querySelector("#video-download");
+    const videoDuration =
+      (this.state.pitch.AnimKeyFrames.length - 1) *
+      this.state.pitch.AnimKeyFrameDuration *
+      1000;
+
+    var videoStream = canvas.captureStream(30);
+    var mediaRecorder = new MediaRecorder(videoStream);
+
+    var chunks = [];
+    mediaRecorder.ondataavailable = function (e) {
+      console.log("chunking");
+      chunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = function (e) {
+      var blob = new Blob(chunks, { type: "video/mp4" });
+      chunks = [];
+      var videoURL = URL.createObjectURL(blob);
+      video.src = videoURL;
+      video.addEventListener("loadedmetadata", function () {
+        if (video.duration === Infinity) {
+          video.currentTime = 1e101;
+          video.ontimeupdate = function () {
+            console.log(video.duration);
+            const a = document.createElement("a");
+            a.style.display = "none";
+            a.href = videoURL;
+            a.download = "futsal-animation.mp4";
+            a.click();
+          };
+        }
+      });
+
+      // download video
+      // const a = document.createElement("a");
+      // a.style.display = "none";
+      // a.href = videoURL;
+      // a.download = "futsal-animation.mp4";
+      // a.click();
+    };
+
+    // this.animPlayerShow();
+    if (this.state.pitch.AnimKeyFrames.length < 2) {
+      this.SnackbarOpen("warning", "No se ha creado ninguna animación.");
+      return;
+    }
+    this.refAnimPlayer.current.show();
+    const interval = setInterval(this.DownloadVideo, 1);
+    setTimeout(() => {
+      mediaRecorder.start();
+      this.refAnimPlayer.current.playPause();
+    }, 100);
+    setTimeout(function () {
+      mediaRecorder.stop();
+      clearInterval(interval);
+    }, videoDuration);
   }
 
   ColorPaletteEdit() {
@@ -512,8 +599,12 @@ class App extends Component {
   }
 
   AnimKeyFrameDurationSet(duration) {
+    console.log(duration);
     if (!this.pitch.animKeyFrameDurationSet(duration)) {
-      this.SnackbarOpen("info", `Establece la duración del fotograma en ${duration}s`);
+      this.SnackbarOpen(
+        "info",
+        `Estableció la duración del fotograma en ${duration}s`
+      );
     }
   }
 
@@ -557,11 +648,6 @@ class App extends Component {
     );
   }
 
-  ConvertAnimKeyFramesToMp4(inputFile, outputFile) {
-    console.log("clicked")
-    // execSync(`ffmpeg -i ${inputFile} ${outputFile}`);
-  }
-
   renderSignIn() {
     if (this.config.useFirebase) {
       return (
@@ -581,6 +667,7 @@ class App extends Component {
           <AppTools
             drawMode={this.state.drawMode}
             saveImage={this.SaveImage}
+            saveVideo={this.SaveVideo}
             animExists={this.state.pitch.AnimExists}
             animKeyFrameCurrent={this.state.pitch.AnimKeyFrameCurrent}
             animKeyFrameTotal={this.state.pitch.AnimKeyFrames.length}
@@ -606,6 +693,7 @@ class App extends Component {
             save={this.showSaveDialog}
             saveAs={this.showSaveAsDialog}
             saveImage={this.SaveImage}
+            saveVideo={this.SaveVideo}
             newScheme={this.NewScheme}
             newAnimation={this.NewAnimation}
             deleteAnimation={this.DeleteAnimation}

@@ -25,7 +25,7 @@ class PitchFutsal {
 
 		this.AnimExists = false;
 		this.AnimKeyFrameCurrent = 0;
-		this.AnimKeyFrameDuration = 5;	// duration of each key frame in seconds
+		this.AnimKeyFrameDuration = 3;	// duration of each key frame in seconds
 		this.AnimKeyFrames = [];
 		this.AnimPlaying = false;
 		this.AnimShowPaths = false;
@@ -348,7 +348,7 @@ class PitchFutsal {
 	animDelete() {
 		this.AnimExists = false;
 		this.AnimKeyFrameCurrent = 0;
-		this.AnimKeyFrameDuration = 5;
+		this.AnimKeyFrameDuration = 3;
 		// keep only 1 key frame
 		this.AnimKeyFrames = [
 			this.AnimKeyFrames[0]

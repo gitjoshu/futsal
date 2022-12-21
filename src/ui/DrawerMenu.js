@@ -16,6 +16,7 @@ import Save from '@mui/icons-material/Save';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Palette from '@mui/icons-material/Palette';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import SlowMotionVideoIcon from '@mui/icons-material/SlowMotionVideo';
 
 class DrawerMenu extends Component {
 	constructor(props) {
@@ -28,6 +29,7 @@ class DrawerMenu extends Component {
 		this.save = this.save.bind(this);
 		this.saveAs = this.saveAs.bind(this);
 		this.saveImage = this.saveImage.bind(this);
+		this.saveVideo = this.saveVideo.bind(this);
 		this.colorPaletteEdit = this.colorPaletteEdit.bind(this);
 		this.state = {
 			drawerOpen: false
@@ -80,6 +82,11 @@ class DrawerMenu extends Component {
 	saveImage() {
 		this.setDrawer(false);
 		this.props.saveImage();
+	}
+
+	saveVideo() {
+		this.setDrawer(false);
+		this.props.saveVideo();
 	}
 
 	colorPaletteEdit() {
@@ -139,6 +146,12 @@ class DrawerMenu extends Component {
 								<ListItemText primary="Captura de pantalla" />
 							</ListItemButton>
 						</ListItem>
+						<ListItem>
+							<ListItemButton onClick={this.saveVideo} disabled={!this.props.isSignedIn}>
+								<ListItemIcon><SlowMotionVideoIcon /></ListItemIcon>
+								<ListItemText primary="Descargar animación" />
+							</ListItemButton>
+						</ListItem>
 						<Divider />
 						<ListItem>
 							<ListItemButton onClick={this.colorPaletteEdit}>
@@ -158,6 +171,7 @@ DrawerMenu.defaultProps = {
 	save: null,
 	saveAs: null,
 	saveImage: null,
+	saveVideo: null,
 	newScheme: null,
 	newAnimation: null,
 	deleteAnimation: null,
@@ -171,6 +185,7 @@ DrawerMenu.propTypes = {
 	save: PropTypes.func,
 	saveAs: PropTypes.func,
 	saveImage: PropTypes.func,
+	saveVideo: PropTypes.func,
 	newScheme: PropTypes.func,
 	newAnimation: PropTypes.func,
 	deleteAnimation: PropTypes.func,
