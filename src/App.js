@@ -91,7 +91,7 @@ class App extends Component {
     this.signOut = this.signOut.bind(this);
     this.signedInCallback = this.signedInCallback.bind(this);
     this.goSiteHome = this.goSiteHome.bind(this);
-    this.DownloadVideo = this.DownloadVideo.bind(this);
+    this.DrawVideo = this.DrawVideo.bind(this);
 
     if (this.config.useFirebase) {
       this.server = new FirebaseServer(
@@ -224,7 +224,7 @@ class App extends Component {
       this.AnimDelete
     );
   }
-  DownloadVideo() {
+  DrawVideo() {
     const img = document.querySelector("#img-download");
     const svg = this.refPitchEdit.current.getSVG();
     const encodedString = "data:image/svg+xml;base64," + btoa(svg.svgText);
@@ -263,7 +263,6 @@ class App extends Component {
   SaveVideo() {
     console.log("App save video");
     const canvas = document.querySelector("#canvas-video");
-    const video = document.querySelector("#video-download");
     const videoDuration =
       (this.state.pitch.AnimKeyFrames.length - 1) *
       this.state.pitch.AnimKeyFrameDuration *
@@ -279,39 +278,22 @@ class App extends Component {
     };
 
     mediaRecorder.onstop = function (e) {
-      var blob = new Blob(chunks, { type: "video/mp4" });
+      var blob = new Blob(chunks, { type: "video/webm" });
       chunks = [];
       var videoURL = URL.createObjectURL(blob);
-      video.src = videoURL;
-      video.addEventListener("loadedmetadata", function () {
-        if (video.duration === Infinity) {
-          video.currentTime = 1e101;
-          video.ontimeupdate = function () {
-            console.log(video.duration);
-            const a = document.createElement("a");
-            a.style.display = "none";
-            a.href = videoURL;
-            a.download = "futsal-animation.mp4";
-            a.click();
-          };
-        }
-      });
-
-      // download video
-      // const a = document.createElement("a");
-      // a.style.display = "none";
-      // a.href = videoURL;
-      // a.download = "futsal-animation.mp4";
-      // a.click();
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = videoURL;
+      a.download = "futsal-animation.webm";
+      a.click();
     };
 
-    // this.animPlayerShow();
     if (this.state.pitch.AnimKeyFrames.length < 2) {
       this.SnackbarOpen("warning", "No se ha creado ninguna animación.");
       return;
     }
     this.refAnimPlayer.current.show();
-    const interval = setInterval(this.DownloadVideo, 1);
+    const interval = setInterval(this.DrawVideo, 1);
     setTimeout(() => {
       mediaRecorder.start();
       this.refAnimPlayer.current.playPause();
